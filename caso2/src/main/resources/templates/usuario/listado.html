@@ -35,9 +35,18 @@
                       th:text="${u.activo} ? 'Activo' : 'Inactivo'"></span>
             </td>
             <td>
-                <a th:href="@{'/usuario/detalle/' + ${u.id}}" class="btn btn-secundario btn-peque">Detalle</a>
-                <a th:href="@{'/usuario/editar/' + ${u.id}}" class="btn btn-primario btn-peque">Editar</a>
-                <a th:href="@{'/usuario/eliminar/' + ${u.id}}" class="btn btn-peque"
+                <a th:href="@{/usuario/detalle/{id}(id=${u.id})}"
+                   class="btn btn-secundario btn-peque">
+                    Detalle
+                </a>
+
+                <a th:href="@{/usuario/editar/{id}(id=${u.id})}"
+                   class="btn btn-primario btn-peque">
+                    Editar
+                </a>
+
+                <a th:href="@{/usuario/eliminar/{id}(id=${u.id})}"
+                   class="btn btn-peque"
                    style="background:#f26d6d;color:white;"
                    onclick="return confirm('¿Seguro que desea eliminar este usuario?');">
                     Eliminar
