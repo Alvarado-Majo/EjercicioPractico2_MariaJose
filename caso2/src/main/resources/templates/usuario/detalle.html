@@ -6,7 +6,8 @@
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
-<div th:replace="fragments/navbar :: navbar"></div>
+<!-- ✅ Sintaxis nueva de fragment -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="contenedor">
     <h2 class="titulo">Detalle del usuario</h2>
@@ -16,12 +17,15 @@
     <p><strong>Apellido:</strong> <span th:text="${usuario.apellido}"></span></p>
     <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
     <p><strong>Rol:</strong> <span th:text="${usuario.rol != null ? usuario.rol.nombre : 'Sin rol'}"></span></p>
+
     <p><strong>Estado:</strong>
         <span th:classappend="${usuario.activo} ? 'badge badge-activo' : 'badge badge-inactivo'"
               th:text="${usuario.activo} ? 'Activo' : 'Inactivo'"></span>
     </p>
+
     <p><strong>Fecha creación:</strong>
-        <span th:text="${#temporals.format(usuario.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></span>
+        <!-- ✅ Usar #dates en lugar de #temporals -->
+        <span th:text="${#dates.format(usuario.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></span>
     </p>
 
     <div class="form-acciones">

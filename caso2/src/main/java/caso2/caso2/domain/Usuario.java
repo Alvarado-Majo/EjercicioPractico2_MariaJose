@@ -26,4 +26,11 @@ public class Usuario implements Serializable {
 
     @Column(name = "fecha_creacion")
     private Timestamp fechaCreacion;
+
+    @PrePersist
+    public void prePersist() {
+        if (fechaCreacion == null) {
+            fechaCreacion = new Timestamp(System.currentTimeMillis());
+        }
+    }
 }
