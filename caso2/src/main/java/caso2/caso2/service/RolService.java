@@ -12,6 +12,14 @@ public class RolService {
 
     @Autowired
     private RolRepository rolRepository;
+    
+    public RolService(RolRepository rolRepository) {
+        this.rolRepository = rolRepository;
+    }
+
+    public List<Rol> listarTodos() {
+        return rolRepository.findAll();
+    }
 
     @Transactional(readOnly = true)
     public List<Rol> listarRoles() {

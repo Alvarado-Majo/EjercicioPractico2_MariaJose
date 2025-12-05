@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reportes</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="contenedor">
+
+    <h2 class="titulo" style="margin-top: 1.5rem;">Reportes de Usuarios</h2>
+
+    <p><strong>Total usuarios:</strong> <span th:text="${totalUsuarios}"></span></p>
+    <p><strong>Activos:</strong> <span th:text="${activos}"></span></p>
+    <p><strong>Inactivos:</strong> <span th:text="${inactivos}"></span></p>
+
+    <h3>Listado general</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Activo</th>
+            <th>Rol</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${usuarios}">
+            <td th:text="${u.nombre}"></td>
+            <td th:text="${u.apellido}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.activo} ? 'Sí' : 'No'"></td>
+            <td th:text="${u.rol != null ? u.rol.nombre : ''}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
 </html>

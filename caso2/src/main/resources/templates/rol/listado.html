@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Roles</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="contenedor">
+    <h2 class="titulo">Gestión de Roles</h2>
+
+    <a th:href="@{/rol/nuevo}" class="btn btn-primario">+ Nuevo rol</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${roles}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.nombre}"></td>
+            <td th:text="${r.descripcion}"></td>
+            <td>
+                <a th:href="@{'/rol/editar/' + ${r.id}}" class="btn btn-primario btn-peque">Editar</a>
+                <a th:href="@{'/rol/eliminar/' + ${r.id}}" class="btn btn-peque"
+                   style="background:#f26d6d;color:white;"
+                   onclick="return confirm('¿Eliminar este rol?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<nav th:fragment="navbar">
+    <div class="navbar">
+        <div class="brand">Plataforma Académica</div>
+        <div>
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/usuario/listado}">Usuarios</a>
+            <a th:href="@{/rol/listado}">Roles</a>
+            <a th:href="@{/reportes}">Reportes</a>
+            <a th:href="@{/perfil}">Mi perfil</a>
+            <a th:href="@{/logout}">Salir</a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

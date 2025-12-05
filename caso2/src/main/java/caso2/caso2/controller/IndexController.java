@@ -11,25 +11,26 @@ public class IndexController {
     @GetMapping("/")
     public String inicio(Authentication auth) {
 
-        if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        if (auth.getAuthorities().contains(
+                new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             return "redirect:/usuario/listado";
         }
 
-        if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_PROFESOR"))) {
+        if (auth.getAuthorities().contains(
+                new SimpleGrantedAuthority("ROLE_PROFESOR"))) {
             return "redirect:/reportes";
         }
 
-        if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ESTUDIANTE"))) {
+        if (auth.getAuthorities().contains(
+                new SimpleGrantedAuthority("ROLE_ESTUDIANTE"))) {
             return "redirect:/perfil";
         }
 
         return "redirect:/login";
     }
 
-    // Página de login
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 }
-

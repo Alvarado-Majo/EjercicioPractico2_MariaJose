@@ -1,15 +1,32 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle usuario</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="contenedor">
+    <h2 class="titulo">Detalle del usuario</h2>
+
+    <p><strong>ID:</strong> <span th:text="${usuario.id}"></span></p>
+    <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+    <p><strong>Apellido:</strong> <span th:text="${usuario.apellido}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+    <p><strong>Rol:</strong> <span th:text="${usuario.rol != null ? usuario.rol.nombre : 'Sin rol'}"></span></p>
+    <p><strong>Estado:</strong>
+        <span th:classappend="${usuario.activo} ? 'badge badge-activo' : 'badge badge-inactivo'"
+              th:text="${usuario.activo} ? 'Activo' : 'Inactivo'"></span>
+    </p>
+    <p><strong>Fecha creación:</strong>
+        <span th:text="${#temporals.format(usuario.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></span>
+    </p>
+
+    <div class="form-acciones">
+        <a th:href="@{/usuario/listado}" class="btn btn-primario">Volver al listado</a>
+    </div>
+</div>
+</body>
 </html>
